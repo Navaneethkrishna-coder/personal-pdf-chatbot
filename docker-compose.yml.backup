@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdf-chatbot-backend
+    env_file:
+      - .env
+    environment:
+      HF_HOME: /models
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./data/uploads:/app/data/uploads
+      - model_cache:/models
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pdf-chatbot-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  model_cache:
