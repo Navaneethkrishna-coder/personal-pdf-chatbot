@@ -1,6 +1,6 @@
 services:
   backend:
-    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-backend:v1
+    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-backend:${IMAGE_TAG:-v1}
     container_name: pdf-chatbot-backend
     env_file:
       - .env
@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-frontend:v1
+    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-frontend:${IMAGE_TAG:-v1}
     container_name: pdf-chatbot-frontend
     ports:
       - "80:80"
