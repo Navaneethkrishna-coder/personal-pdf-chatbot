@@ -1,8 +1,6 @@
 services:
   backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-backend:${IMAGE_TAG:-v1}
     container_name: pdf-chatbot-backend
     env_file:
       - .env
@@ -17,9 +15,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: 820140266353.dkr.ecr.ap-south-1.amazonaws.com/personal-pdf-chatbot-frontend:${IMAGE_TAG:-v1}
     container_name: pdf-chatbot-frontend
     ports:
       - "80:80"
